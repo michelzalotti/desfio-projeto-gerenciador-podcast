@@ -1,5 +1,4 @@
 import { IncomingMessage, ServerResponse } from "http";
-import { httpStatusCode } from "../../../utils/statusCode";
 import { readEpisodeService } from "../services/readEpisodeService";
 
 export const readEpisodeController = async (
@@ -8,6 +7,7 @@ export const readEpisodeController = async (
 ) => {
   const data = await readEpisodeService(req.url);
 
-  res.writeHead(httpStatusCode.OK, { "content-encoding": "application/json" });
-  res.end(JSON.stringify(data));
+  res.writeHead(data.statusCode, { "content-encoding": "application/json" });
+  res.write(JSON.stringify(data.body));
+  res.end();
 };

@@ -1,16 +1,16 @@
 import { IncomingMessage, ServerResponse } from "node:http";
-import { httpStatusCode } from "../../../utils/statusCode";
 import { listEpisodesService } from "../services/listEpisodesService";
 
 export const listEpisodesController = async (
   req: IncomingMessage,
   res: ServerResponse
 ) => {
-  const content = await listEpisodesService();
+  const data = await listEpisodesService();
 
-  res.writeHead(httpStatusCode.OK, {
+  res.writeHead(data.statusCode, {
     "content-encoding": "application/json",
   });
 
-  res.end(JSON.stringify(content));
+  res.write(JSON.stringify(data.body));
+  res.end();
 };
