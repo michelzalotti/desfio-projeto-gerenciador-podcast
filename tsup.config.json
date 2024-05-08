@@ -1,0 +1,8 @@
+{
+    "entry": [
+        "./src/index.ts"
+    ],
+    "minify": true,
+    "sourcemap": true,
+    "dts": true
+}
